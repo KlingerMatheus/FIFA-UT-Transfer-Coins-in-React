@@ -17,6 +17,7 @@
 @media screen and (max-width: 1100px) {
   .navbar-container {
     height: max-content;
+    padding-inline: 25px;
   }
 
   .navbar-container nav {
