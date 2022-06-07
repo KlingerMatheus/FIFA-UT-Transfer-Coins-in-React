@@ -5,14 +5,18 @@ import PlayerItem from "./PlayerItem";
 
 function PlayersTable(props: { coinsToBeTransfered: number }) {
   const [players, setPlayers] = useState<any>([]);
-  const [totalTransfered, setTotalTransfered] = useState<Number>();
+  const [totalTransfered, setTotalTransfered] = useState<number>(0);
 
   useEffect(() => {
     setTotalTransfered(sumPartials());
   }, [players]);
 
+  function numberWithCommas(value: number) {
+    return value.toLocaleString("en");
+  }
+
   function sumPartials() {
-    let sumPartials: Number = 0;
+    let sumPartials: number = 0;
 
     players.map((player: any) => {
       sumPartials += player.partial;
@@ -21,7 +25,7 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
     return sumPartials;
   }
 
-  function removePlayer(id: Number) {
+  function removePlayer(id: number) {
     setPlayers(() => {
       function getPlayerIndex(player: any) {
         return player.id !== id;
@@ -44,12 +48,14 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
       return (
         <PlayerItem
           key={player.id}
-          id={player.id}
-          name={player.name}
-          price={player.price}
-          soldBy={player.soldBy}
-          partial={player.partial}
-          removePlayer={(id: Number) => removePlayer(id)}
+          player={{
+            id: player.id,
+            name: player.name,
+            price: player.price,
+            soldBy: player.soldBy,
+            partial: player.partial,
+          }}
+          onRemovePlayer={(id: number) => removePlayer(id)}
         />
       );
     });
@@ -60,16 +66,16 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
       <>
         <tr>
           <td colSpan={3}>
-            <p>Total Transfered: {totalTransfered?.toLocaleString("EN")}</p>
+            <p>Total Transfered: {numberWithCommas(totalTransfered)}</p>
           </td>
           <td colSpan={3}>
             <p>
               Remaining:{" "}
               {isNaN(props.coinsToBeTransfered - Number(totalTransfered))
                 ? 0
-                : (
+                : numberWithCommas(
                     props.coinsToBeTransfered - Number(totalTransfered)
-                  ).toLocaleString("EN")}
+                  )}
             </p>
           </td>
         </tr>

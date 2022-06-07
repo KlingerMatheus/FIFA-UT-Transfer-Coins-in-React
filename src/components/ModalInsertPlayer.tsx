@@ -5,9 +5,9 @@ import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ModalInsertPlayer(props: any) {
   type Player = {
-    name: String;
-    soldBy: Number;
-    price: Number;
+    name: string;
+    soldBy: number;
+    price: number;
   };
 
   const [showModal, setShowModal] = useState<Boolean>(false);
