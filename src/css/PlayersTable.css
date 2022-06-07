@@ -1,0 +1,51 @@
+table {
+  background-color: var(--foreground-color);
+  border-radius: 4px;
+  width: 100%;
+  border-collapse: collapse;
+  overflow: hidden;
+  padding: 8px;
+}
+
+table thead tr {
+  background-color: var(--main-color);
+  font-weight: bolder;
+  font-size: large;
+}
+
+table tbody tr:nth-child(even) {
+  background-color: rgb(0, 0, 0, 0.15);
+}
+
+table tr td {
+  padding: 16px 8px;
+  text-align: center;
+}
+
+table tfoot tr {
+  background-color: transparent;
+  border-top: 1px solid var(--main-color);
+  font-weight: bolder;
+  font-size: larger;
+}
+
+table tbody tr td:nth-last-of-type(1) {
+  width: 100px;
+}
+
+table tbody tr:hover {
+  background-color: var(--background-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+table tbody tr td:nth-of-type(2) {
+  text-transform: capitalize;
+}
+
+.no-players-alert {
+  padding: 26px;
+  text-align: center;
+  font-size: large;
+  font-weight: bolder;
+}

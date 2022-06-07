@@ -1,0 +1,264 @@
+:root {
+  --background-color: rgb(30, 30, 30);
+  --foreground-color: rgb(22, 22, 22);
+  --text-color: rgb(230, 230, 230);
+  --main-color: rgb(41, 116, 255);
+  --transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 200ms;
+}
+/* CSS RESET */
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  list-style: none;
+  text-decoration: none;
+  box-sizing: border-box;
+}
+/* END CSS RESET */
+
+/* DEFAULT */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+
+main {
+  display: flex;
+  justify-content: center;
+}
+
+.page-title {
+  color: var(--text-color);
+  transition: var(--transition);
+}
+
+.page-title:hover {
+  opacity: 0.75;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 75%;
+  margin-top: 50px;
+}
+
+.container div {
+  margin-bottom: 24px;
+}
+
+/* END DEFAULT */
+
+/* BUTTONS */
+
+.btn {
+  position: relative;
+  padding: 16px 32px;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.btn-solid-primary {
+  color: var(--text-color);
+  border: 1px solid var(--main-color);
+  background-color: var(--main-color);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: inset 0px 0px 3px rgba(255, 255, 255, 0.15);
+  transition: var(--transition);
+}
+
+.btn-solid-primary:hover {
+  background-color: var(--foreground-color);
+  box-shadow: none;
+  color: var(--main-color);
+}
+
+.btn-transparent-primary {
+  background-color: transparent;
+  color: var(--main-color);
+  border-radius: 4px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: var(--transition);
+}
+
+.btn-transparent-primary:hover {
+  border-color: var(--main-color);
+  color: var(--text-color);
+  box-shadow: inset 0px 0px 3px rgba(255, 255, 255, 0.15);
+  background-color: var(--main-color);
+}
+/* END BUTTONS */
+
+/* FORMS */
+
+.input-group {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#input-set-coins {
+  background-color: rgba(255, 255, 255, 0.15);
+  transition: var(--transition);
+}
+
+#input-set-coins:focus {
+  background-color: rgb(230, 230, 230);
+}
+
+input {
+  border-radius: 4px;
+  border: none;
+  padding: 12px;
+  text-align: center;
+  width: 100%;
+}
+
+label {
+  top: -12px;
+  padding-inline: 10px;
+  left: 8px;
+  border-radius: 4px;
+  color: var(--text-color);
+  min-width: fit-content;
+}
+
+.range-label {
+  background-color: var(--main-color);
+  padding: 8px 14px;
+  font-weight: 500;
+  border-radius: 100px;
+}
+
+.label-top {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.slider {
+  appearance: none;
+  width: 100%;
+  border-radius: 1000px;
+  height: 18px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity 500ms;
+  padding: 0;
+}
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  transform: scale(1.1);
+  border-radius: 100px;
+  background: var(--main-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.slider::-webkit-slider-thumb:hover {
+  transform: scale(1.5);
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+/* END FORMS */
+
+/* MARGIN */
+.mt {
+  margin-top: 25px;
+}
+
+.mb {
+  margin-bottom: 25px;
+}
+
+.ml {
+  margin-left: 15px;
+}
+
+.mr {
+  margin-right: 15px;
+}
+/* END MARGIN */
+
+/* POSITIONING */
+
+.d-flex {
+  display: flex;
+}
+
+.d-align-right {
+  justify-content: right;
+}
+
+.d-align-left {
+  justify-content: left;
+}
+
+.d-align-center {
+  justify-content: center;
+}
+
+/* END POSITIONING */
+
+/* RESPONSIVE QUERIES */
+
+@media screen and (max-width: 768px) {
+  .container {
+    width: 92%;
+  }
+}
+
+/* ANIMATIONS */
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes translate-y {
+  from {
+    transform: translateY(150px);
+  }
+  to {
+    transform: translateY(00px);
+  }
+}
+
+.error-anim {
+  animation: error-anim 1s ease-in-out infinite;
+}
+
+@keyframes error-anim {
+  0% {
+  }
+
+  50% {
+    outline: 3px solid red;
+  }
+
+  100% {
+  }
+}
+
+/* END ANIMATIONS */
