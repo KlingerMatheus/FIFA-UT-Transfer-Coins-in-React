@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../css/Modal.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function ModalInsertPlayer(props: any) {
   type Player = {
@@ -59,10 +59,22 @@ function ModalInsertPlayer(props: any) {
     <>
       <div className="d-flex d-align-right mt">
         <button
+          onClick={() => {
+            confirm("Are you sure you want to remove all players?")
+              ? props.onRemoveAllPlayers()
+              : undefined;
+          }}
+          className="btn btn-solid danger mr"
+        >
+          <span className="tooltip">Remove All Players</span>
+          <FontAwesomeIcon icon={faTrash} /> <p></p>
+        </button>
+        <button
           onClick={() => setShowModal(true)}
-          className="btn btn-solid-primary"
+          className="btn btn-solid primary"
         >
           <FontAwesomeIcon icon={faPlus} />
+          <span className="tooltip">Insert a Player</span>
         </button>
       </div>
       <div className="modal" style={{ display: showModal ? "flex" : "none" }}>
@@ -112,14 +124,14 @@ function ModalInsertPlayer(props: any) {
             <button
               type="button"
               onClick={() => onInsertPlayer()}
-              className="btn btn-solid-primary"
+              className="btn btn-solid primary"
             >
               Confirm
             </button>
             <button
               type="button"
               onClick={() => setShowModal(false)}
-              className="btn btn-transparent-primary"
+              className="btn btn-solid danger"
             >
               Cancel
             </button>

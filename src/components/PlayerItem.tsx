@@ -19,7 +19,7 @@ function PlayerItem(props: any) {
           onClick={() => {
             props.removePlayer(props.id);
           }}
-          className="btn btn-transparent-primary"
+          className="btn btn-solid danger"
         >
           <FontAwesomeIcon icon={faTrash} />
         </button>

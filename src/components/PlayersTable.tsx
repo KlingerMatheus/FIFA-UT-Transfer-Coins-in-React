@@ -92,6 +92,11 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
         <tfoot>{players.length > 0 ? showResults() : null}</tfoot>
       </table>
       <ModalInsertPlayer
+        onRemoveAllPlayers={() => setPlayers([])}
+        hasPlayersOnTable={() => {
+          if (players.length > 0) return true;
+          else return false;
+        }}
         onInsertPlayer={(player: any) =>
           setPlayers((players: any) => [...players, player])
         }
