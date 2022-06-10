@@ -1,7 +1,3 @@
-<nav>
-	<a href="#intro">INTRO</a> | <a href="#objective">OBJECTIVE</a> | <a href="#resources">RESOURCES</a> | <a href="#how-to-run">HOW TO RUN?</a>
-</nav>
-
 <section id="intro">
 	<h1>FIFA Transfer Coins in React</h1>
 	<p>It was developed using the package tool Vite to build the main Template with React and TypeScript.</p>
