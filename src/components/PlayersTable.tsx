@@ -1,18 +1,27 @@
 import { useEffect, useState } from "react";
 import ModalInsertPlayer from "./ModalInsertPlayer";
-import "../css/PlayersTable.css";
 import PlayerItem from "./PlayerItem";
+import { numberWithCommasRounded } from "../scripts/formatNumbers";
+import "../css/PlayersTable.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCalculator, faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function PlayersTable(props: { coinsToBeTransfered: number }) {
   const [players, setPlayers] = useState<any>([]);
   const [totalTransfered, setTotalTransfered] = useState<number>(0);
+  const [showResetAllPlayersButton, setShowResetAllPlayersButton] =
+    useState<boolean>(false);
 
   useEffect(() => {
     setTotalTransfered(sumPartials());
+    setShowResetAllPlayersButton(hasPlayers());
   }, [players]);
 
-  function numberWithCommas(value: number) {
-    return value.toLocaleString("en");
+  function hasPlayers() {
+    if (players.length === 0) {
+      return false;
+    }
+    return true;
   }
 
   function sumPartials() {
@@ -39,7 +48,8 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
       return (
         <tr>
           <td className="no-players-alert" colSpan={6}>
-            Click on the button below do add some player to this list.
+            Click on the button below with an <b style={{ fontSize: 26 }}>+</b>{" "}
+            to add some player to this list.
           </td>
         </tr>
       );
@@ -66,14 +76,14 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
       <>
         <tr>
           <td colSpan={3}>
-            <p>Total Transfered: {numberWithCommas(totalTransfered)}</p>
+            <p>Total Transfered: {numberWithCommasRounded(totalTransfered)}</p>
           </td>
           <td colSpan={3}>
             <p>
               Remaining:{" "}
               {isNaN(props.coinsToBeTransfered - Number(totalTransfered))
                 ? 0
-                : numberWithCommas(
+                : numberWithCommasRounded(
                     props.coinsToBeTransfered - Number(totalTransfered)
                   )}
             </p>
@@ -97,16 +107,34 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
         <tbody>{renderPlayers()}</tbody>
         <tfoot>{players.length > 0 ? showResults() : null}</tfoot>
       </table>
-      <ModalInsertPlayer
-        onRemoveAllPlayers={() => setPlayers([])}
-        hasPlayersOnTable={() => {
-          if (players.length > 0) return true;
-          else return false;
-        }}
-        onInsertPlayer={(player: any) =>
-          setPlayers((players: any) => [...players, player])
-        }
-      />
+      <div className="btn-group mt">
+        <button
+          style={
+            showResetAllPlayersButton
+              ? { display: "flex" }
+              : { display: "none" }
+          }
+          onClick={() => {
+            confirm("Are you sure you want to remove all players?")
+              ? setPlayers([])
+              : undefined;
+          }}
+          className="btn btn-solid btn-icon danger mr"
+        >
+          <span className="tooltip">Remove All Players</span>
+          <FontAwesomeIcon icon={faTrash} /> <p></p>
+        </button>
+        <button className="btn btn-solid btn-icon orange mr">
+          <span className="tooltip">Calculator</span>
+          <FontAwesomeIcon icon={faCalculator} /> <p></p>
+        </button>
+
+        <ModalInsertPlayer
+          onInsertPlayer={(player: any) =>
+            setPlayers((players: any) => [...players, player])
+          }
+        />
+      </div>
     </>
   );
 }

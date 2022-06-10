@@ -52,9 +52,19 @@ main {
   margin-bottom: 24px;
 }
 
+hr {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  margin-block: 20px;
+}
 /* END DEFAULT */
 
 /* BUTTONS */
+
+.btn-group {
+  display: flex;
+  justify-content: right;
+}
 
 .btn {
   position: relative;
@@ -133,6 +143,11 @@ main {
   top: 62px;
   opacity: 1;
 }
+
+.btn-icon {
+  font-size: 24px;
+}
+
 /* END BUTTONS */
 
 /* COLORS */
@@ -145,6 +160,11 @@ main {
 .danger {
   color: var(--text-color);
   background-color: rgb(150, 0, 0);
+}
+
+.orange {
+  color: var(--text-color);
+  background-color: rgb(250, 100, 0);
 }
 
 .light {
