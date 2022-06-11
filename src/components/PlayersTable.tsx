@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import ModalInsertPlayer from "./ModalInsertPlayer";
+import ModalCalculator from "./ModalCalculator";
 import PlayerItem from "./PlayerItem";
 import { numberWithCommasRounded } from "../scripts/formatNumbers";
 import "../css/PlayersTable.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCalculator, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 function PlayersTable(props: { coinsToBeTransfered: number }) {
   const [players, setPlayers] = useState<any>([]);
@@ -41,6 +42,10 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
       }
       return players.filter(getPlayerIndex);
     });
+  }
+
+  function getTotalRemaining() {
+    return Math.round(props.coinsToBeTransfered - totalTransfered);
   }
 
   function renderPlayers() {
@@ -124,11 +129,7 @@ function PlayersTable(props: { coinsToBeTransfered: number }) {
           <span className="tooltip">Remove All Players</span>
           <FontAwesomeIcon icon={faTrash} /> <p></p>
         </button>
-        <button className="btn btn-solid btn-icon orange mr">
-          <span className="tooltip">Calculator</span>
-          <FontAwesomeIcon icon={faCalculator} /> <p></p>
-        </button>
-
+        <ModalCalculator coinsToBeTransfered={getTotalRemaining()} />
         <ModalInsertPlayer
           onInsertPlayer={(player: any) =>
             setPlayers((players: any) => [...players, player])

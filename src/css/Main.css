@@ -184,7 +184,6 @@ hr {
 .input-group {
   position: relative;
   display: flex;
-  flex-direction: row;
   align-items: center;
 }
 
@@ -279,6 +278,10 @@ label {
 /* END MARGIN */
 
 /* POSITIONING */
+
+.d-column {
+  flex-direction: column;
+}
 
 .d-flex {
   display: flex;

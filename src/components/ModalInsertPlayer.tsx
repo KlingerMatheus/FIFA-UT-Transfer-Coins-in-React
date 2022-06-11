@@ -44,7 +44,7 @@ function ModalInsertPlayer(props: any) {
   function onInsertPlayer() {
     if (validateForm()) {
       props.onInsertPlayer(
-        Object.assign(player, { id: Math.random(), partial: getPartial() })
+        Object.assign(player!, { id: Math.random(), partial: getPartial() })
       );
       clearTextFields();
       setShowModal(false);
